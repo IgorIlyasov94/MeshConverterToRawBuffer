@@ -56,9 +56,9 @@ int Application::Run()
 
 		std::string indexBufferPath = meshFilePath.filename().string() + "_IndexBuffer.bin";
 
-		OBJLoader::SaveVertexBuffer(indexBufferPath, indexBuffer);
+		OBJLoader::SaveIndexBuffer(indexBufferPath, indexBuffer);
 
-		std::cout << "VertexBuffer saved:" << std::endl;
+		std::cout << "IndexBuffer saved:" << std::endl;
 
 		std::cout << indexBufferPath << std::endl;
 	}
