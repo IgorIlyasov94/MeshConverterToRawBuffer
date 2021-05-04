@@ -14,8 +14,28 @@ enum class VertexFormat
 	POSITION,
 	POSITION_TEXCOORD,
 	POSITION_NORMAL,
-	POSITION_NORMAL_TEXCOORD
+	POSITION_NORMAL_TANGENT_BINORMAL,
+	POSITION_NORMAL_TEXCOORD,
+	POSITION_NORMAL_TANGENT_BINORMAL_TEXCOORD
 };
+
+inline uint32_t GetVertexStride(VertexFormat vertexFormat)
+{
+	if (vertexFormat == VertexFormat::POSITION)
+		return 12;
+	else if (vertexFormat == VertexFormat::POSITION_TEXCOORD)
+		return 20;
+	else if (vertexFormat == VertexFormat::POSITION_NORMAL)
+		return 24;
+	else if (vertexFormat == VertexFormat::POSITION_NORMAL_TEXCOORD)
+		return 32;
+	else if (vertexFormat == VertexFormat::POSITION_NORMAL_TANGENT_BINORMAL)
+		return 48;
+	else if (vertexFormat == VertexFormat::POSITION_NORMAL_TANGENT_BINORMAL_TEXCOORD)
+		return 56;
+
+	return 0;
+}
 
 inline void ThrowIfFailed(bool successCondition, const char* errorMessage)
 {

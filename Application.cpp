@@ -30,6 +30,12 @@ int Application::Run()
 		std::cin >> calculateNormals;
 		std::cout << std::endl;
 
+		char calculateTangents{};
+
+		std::cout << "Calculate tangents? (Y - yes/N - no):" << std::endl;
+		std::cin >> calculateTangents;
+		std::cout << std::endl;
+
 		char smoothNormals{};
 
 		std::cout << "Smooth normals? (Y - yes/N - no):" << std::endl;
@@ -41,8 +47,8 @@ int Application::Run()
 		std::vector<uint8_t> vertexBuffer;
 		std::vector<uint8_t> indexBuffer;
 
-		OBJLoader::Load(meshFilePath, calculateNormals == 'Y' || calculateNormals == 'y', smoothNormals == 'Y' || smoothNormals == 'y', vertexFormat,
-			vertexBuffer, indexBuffer);
+		OBJLoader::Load(meshFilePath, calculateNormals == 'Y' || calculateNormals == 'y', calculateTangents == 'Y' || calculateTangents == 'y',
+			smoothNormals == 'Y' || smoothNormals == 'y', vertexFormat, vertexBuffer, indexBuffer);
 
 		std::cout << "Loading done!" << std::endl << std::endl;
 		
@@ -51,7 +57,6 @@ int Application::Run()
 		OBJLoader::SaveVertexBuffer(vertexBufferPath, vertexBuffer);
 
 		std::cout << "VertexBuffer saved:" << std::endl;
-
 		std::cout << vertexBufferPath << std::endl;
 
 		std::string indexBufferPath = meshFilePath.filename().string() + "_IndexBuffer.bin";
@@ -59,8 +64,12 @@ int Application::Run()
 		OBJLoader::SaveIndexBuffer(indexBufferPath, indexBuffer);
 
 		std::cout << "IndexBuffer saved:" << std::endl;
+		std::cout << indexBufferPath << std::endl << std::endl;
 
-		std::cout << indexBufferPath << std::endl;
+		std::cout << "Results:" << std::endl;
+		std::cout << "Vertices count: " << vertexBuffer.size() / GetVertexStride(vertexFormat) << std::endl;
+		std::cout << "Vertex stride: " << GetVertexStride(vertexFormat) << std::endl;
+		std::cout << "Indices count: " << indexBuffer.size() / 4 << std::endl;
 	}
 	catch (const std::exception& e)
 	{
