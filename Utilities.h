@@ -46,7 +46,7 @@ inline void GetFilePathFromDialog(std::string& filePath)
 
 	COMDLG_FILTERSPEC filterSpec[] =
 	{
-		{ L"Bitmap", L"*.bmp" },
+		{ L"OBJ", L"*.obj" },
 	};
 
 	fileOpenDialog->SetFileTypes(ARRAYSIZE(filterSpec), filterSpec);

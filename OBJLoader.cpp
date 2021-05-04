@@ -65,13 +65,13 @@ void OBJLoader::Load(const std::filesystem::path& filePath, bool calculateNormal
 	verticesData.resize(vertices.size() * sizeof(float));
 	std::copy(reinterpret_cast<uint8_t*>(vertices.data()), reinterpret_cast<uint8_t*>(vertices.data()) + vertices.size() * sizeof(float), verticesData.data());
 
-	indicesData.resize(indices.size() * sizeof(float));
+	indicesData.resize(indices.size() * sizeof(uint32_t));
 	std::copy(reinterpret_cast<uint8_t*>(indices.data()), reinterpret_cast<uint8_t*>(indices.data()) + indices.size() * sizeof(uint32_t), indicesData.data());
 }
 
 void OBJLoader::SaveVertexBuffer(const std::filesystem::path& filePath, std::vector<uint8_t>& verticesData)
 {
-	std::ofstream binFile(filePath, std::ios::out);
+	std::ofstream binFile(filePath, std::ios::out | std::ios::binary);
 
 	binFile.write(reinterpret_cast<const char*>(verticesData.data()), verticesData.size());
 	binFile.close();
@@ -79,7 +79,7 @@ void OBJLoader::SaveVertexBuffer(const std::filesystem::path& filePath, std::vec
 
 void OBJLoader::SaveIndexBuffer(const std::filesystem::path& filePath, std::vector<uint8_t>& indicesData)
 {
-	std::ofstream binFile(filePath, std::ios::out);
+	std::ofstream binFile(filePath, std::ios::out | std::ios::binary);
 
 	binFile.write(reinterpret_cast<const char*>(indicesData.data()), indicesData.size());
 	binFile.close();
