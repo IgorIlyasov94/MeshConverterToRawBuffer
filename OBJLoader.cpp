@@ -370,7 +370,7 @@ bool OBJLoader::CheckTriangleInPolygon(float3 position0, float3 position1, float
 float3 OBJLoader::CalculateNormal(float3 position0, float3 position1, float3 position2)
 {
 	floatN vector0_1 = XMLoadFloat3(&position1) - XMLoadFloat3(&position0);
-	floatN vector1_2 = XMLoadFloat3(&position2) - XMLoadFloat3(&position1);
+	floatN vector1_2 = XMLoadFloat3(&position2) - XMLoadFloat3(&position0);
 
 	floatN normal = XMVector3Cross(vector0_1, vector1_2);
 	normal = XMVector3Normalize(normal);
