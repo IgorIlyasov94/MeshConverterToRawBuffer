@@ -16,6 +16,7 @@
 
 #include <vector>
 #include <array>
+#include <set>
 #include <exception>
 #include <utility>
 #include <algorithm>
